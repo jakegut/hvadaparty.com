@@ -25,17 +25,12 @@ export const SOCIALS: SocialsObject = [
   },
   {
     name: "Linkedin",
-    href: "https://github.com/satnaing/astro-paper",
+    href: "https://linkedin.com/in/jakegut",
     active: true,
   },
   {
     name: "Mail",
-    href: "mailto:yourmail@gmail.com",
-    active: true,
-  },
-  {
-    name: "Twitter",
-    href: "https://github.com/satnaing/astro-paper",
+    href: "mailto:jakegut0108@gmail.com",
     active: true,
   },
   {
