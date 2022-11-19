@@ -40,4 +40,4 @@ export type SocialMedia =
   | "Skype"
   | "Steam"
   | "Telegram"
-  | "Mastadon";
+  | "Mastodon";

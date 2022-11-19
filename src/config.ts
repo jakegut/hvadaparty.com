@@ -39,7 +39,7 @@ export const SOCIALS: SocialsObject = [
     active: true,
   },
   {
-    name: "Mastadon",
+    name: "Mastodon",
     href: "https://hachyderm.io/@jakegut",
     active: true,
   },
