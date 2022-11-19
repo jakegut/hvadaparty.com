@@ -38,4 +38,9 @@ export const SOCIALS: SocialsObject = [
     href: "https://github.com/satnaing/astro-paper",
     active: true,
   },
+  {
+    name: "Mastadon",
+    href: "https://hachyderm.io/@jakegut",
+    active: true,
+  },
 ];

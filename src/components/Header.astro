@@ -1,16 +1,14 @@
 ---
-import { LOGO_IMAGE, SITE } from "src/config";
+import { SITE } from "src/config";
 import Hr from "./Hr.astro";
 import LinkButton from "./LinkButton.astro";
-
-import logoPNG from "/assets/logo.png";
-import logoSVG from "/assets/logo.svg";
 
 export interface Props {
   activeNav?: "posts" | "tags" | "about" | "search" | "now";
 }
 
 const { activeNav } = Astro.props;
+const path = Astro.url.pathname.length == 1 ? "" : Astro.url.pathname;
 ---
 
 <header>
@@ -18,18 +16,9 @@ const { activeNav } = Astro.props;
   <div class="nav-container">
     <div class="top-nav-wrap">
       <a href="/" class="logo">
-        {
-          LOGO_IMAGE.enable ? (
-            <img
-              src={LOGO_IMAGE.svg ? logoSVG : logoPNG}
-              alt="AstroPaper Logo"
-              width={LOGO_IMAGE.width}
-              height={LOGO_IMAGE.height}
-            />
-          ) : (
-            SITE.title
-          )
-        }
+        user@jakegut<span class="dir">:~{path}$</span><span class="underscore"
+          >_</span
+        >
       </a>
       <button class="hamburger-menu" aria-label="menu">
         <div class="icon-container flex">
@@ -47,9 +36,7 @@ const { activeNav } = Astro.props;
           >
         </li>
         <li>
-          <a href="/now" class={activeNav === "now" ? "active" : ""}
-            >/now</a
-          >
+          <a href="/now" class={activeNav === "now" ? "active" : ""}>/now</a>
         </li>
       </ul>
       <div class="button-wrapper">
@@ -58,7 +45,7 @@ const { activeNav } = Astro.props;
           className={`focus-outline p-1 ${
             activeNav === "search" ? "active" : ""
           }`}
-          ariaLabel="search"
+          aria-label="search"
           title="Search"
         >
           <svg xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +92,26 @@ const { activeNav } = Astro.props;
     @apply w-full p-4 sm:py-8 flex justify-between items-center;
   }
   .logo {
-    @apply font-semibold text-xl sm:text-2xl py-1;
+    @apply font-mono sm:text-xl py-1;
+  }
+  .dir {
+    color: rgb(102, 255, 102);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.055), 0 0 2px rgb(102, 255, 102),
+      0 0 20px rgb(102, 255, 102);
+  }
+  .underscore {
+    animation: blink-animation 1.5s none infinite;
+    -webkit-animation: blink-animation 1.5s none infinite;
+  }
+  @keyframes blink-animation {
+    50% {
+      opacity: 0;
+    }
+  }
+  @-webkit-keyframes blink-animation {
+    50% {
+      opacity: 0;
+    }
   }
   .hamburger-menu {
     @apply p-2 sm:hidden;
@@ -114,7 +120,7 @@ const { activeNav } = Astro.props;
     @apply fill-skin-base w-6 h-6 scale-125;
   }
   nav {
-    @apply w-full py-2 sm:py-0 flex flex-col items-center sm:justify-end sm:flex-row sm:space-x-4 bg-skin-fill;
+    @apply py-2 sm:py-0 flex flex-col items-center sm:justify-end sm:flex-row sm:space-x-4 bg-skin-fill;
   }
   nav ul {
     @apply flex flex-col sm:flex-row sm:space-x-4;

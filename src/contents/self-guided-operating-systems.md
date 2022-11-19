@@ -35,7 +35,7 @@ While the course website is packed with information, I'm often at a loss (dare s
 
 The main reason I'm creating this post is to hopefully organize and extend upon the course in a format that I can follow step-by-step and can easily come back to. I'll create a personal syllabus that first includes the Intro to OS course, some more readings and projects from OSTEP and finally another book to apply my knowledge to.
 
-## A Syllabus {#syllabus}
+## Syllabus
 
 No dates here, don't want to stress about meeting a certain deadline. Instead, I plan on completing each row-by-row in order. You could probably pace yourself by doing one row a week.
 

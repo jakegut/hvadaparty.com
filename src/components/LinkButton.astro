@@ -1,13 +1,15 @@
 ---
-export interface Props {
+import type { AnchorHTMLAttributes } from "react";
+
+export interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   className?: string;
-  ariaLabel?: string;
   title?: string;
   tabindex?: string;
 }
 
-const { href, className, ariaLabel, title, tabindex } = Astro.props;
+const { href, className, ariaLabel, title, tabindex, rel, target, ...props } =
+  Astro.props;
 ---
 
 <a
@@ -17,6 +19,8 @@ const { href, className, ariaLabel, title, tabindex } = Astro.props;
   class={`group ${className}`}
   aria-label={ariaLabel}
   title={title}
+  rel={rel}
+  target={target}
 >
   <slot />
 </a>

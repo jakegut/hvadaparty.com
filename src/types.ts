@@ -39,4 +39,5 @@ export type SocialMedia =
   | "Reddit"
   | "Skype"
   | "Steam"
-  | "Telegram";
+  | "Telegram"
+  | "Mastadon";
