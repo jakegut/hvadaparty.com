@@ -38,7 +38,7 @@ jobs:
           git config --local user.name "Jake Gutierrez"
           git config --local user.email "jakegut0108@gmail.com"
 
-          git add public resume/artificats resume/main.pdf 
+          git add public resume/artifacts resume/main.pdf 
           git commit -m "[CD] Update resume.pdf"
       - name: Push changes
         uses: ad-m/github-push-action@master

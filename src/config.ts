@@ -3,7 +3,7 @@ import type { SocialsObject } from "./types";
 export const SITE = {
   website: "https://jakegut.com",
   author: "Jake Gutierrez",
-  desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
+  desc: "A peronsal website",
   title: "Jake Gutierrez",
   ogImage: "default-og.png",
   lightAndDarkMode: true,
