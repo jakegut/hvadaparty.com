@@ -33,13 +33,12 @@ jobs:
           cp resume/main.pdf public/resume.pdf
 
           rm resume/main.pdf
-          rm resume/main.xdv
       - name: Push changes to GitHub
         run: |
           git config --local user.name "Jake Gutierrez"
           git config --local user.email "jakegut0108@gmail.com"
 
-          git add .
+          git add public resume/artificats resume/main.pdf 
           git commit -m "[CD] Update resume.pdf"
       - name: Push changes
         uses: ad-m/github-push-action@master
