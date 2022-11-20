@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <style>
+        :root{
+            --color-fill: rgb(25, 25, 25);
+            --color-text-base: rgb(230, 230, 230);
+            --color-accent: rgb(102, 255, 102);
+            --color-card: rgb(63, 75, 90);
+            --color-card-muted: rgb(89, 107, 129);
+            --color-border: rgb(60, 60, 60);
+        }
+        * {
+            font-family: 'IBM Plex Mono';
+        }
+        body {
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-fill)
+        }
+        div {
+            font-size: 50px;
+            color: var(--color-text-base)
+        }
+        span {
+            color: rgb(102, 255, 102);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.055), 0 0 2px rgb(102, 255, 102),
+            0 0 20px rgb(102, 255, 102);
+        }
+    </style>
+</head>
+<body>
+    <div>user:jakegut<span>:~${title}$</span>_</div>
+</body>
+</html>
