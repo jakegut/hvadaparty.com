@@ -3,9 +3,8 @@ import type { SocialsObject } from "./types";
 export const SITE = {
   website: "https://jakegut.com",
   author: "Jake Gutierrez",
-  desc: "A peronsal website",
+  desc: "A peronsal website!",
   title: "Jake Gutierrez",
-  ogImage: "default-og.png",
   lightAndDarkMode: true,
   postPerPage: 5,
 };
