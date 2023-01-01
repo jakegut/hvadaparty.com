@@ -7,7 +7,7 @@ I'm working fully remote at [Clever](https://clever.com) as a Software Engineer 
 
 I'm currently exapanding my Computer Science major with more college-level courses, with the goal of working on lower-level systems as a career.
 
-I'm trying to track my progress using [notion.](https://seed-session-edb.notion.site/9706eb0f1e3d494aba9e5ef2ab684ce7?v=6590f35a9cff4bc7a8fb0380cfe0ca4a) Check out my post on [Self Guided Operating Systems.](/posts/sg-os/)
+I'm trying to track my progress over at my [digital garden](https://notes.jakegut.com/Extended%20CS). Check out my post on [Self Guided Operating Systems.](/posts/sg-os/)
 
 In my world I:
 
