@@ -7,7 +7,7 @@ I'm working fully remote at [Clever](https://clever.com) as a Software Engineer 
 
 I'm currently exapanding my Computer Science major with more college-level courses, with the goal of working on lower-level systems as a career.
 
-I'm trying to track my progress over at my [digital garden](https://notes.jakegut.com/Extended%20CS). Check out my post on [Self Guided Operating Systems.](/posts/sg-os/)
+I'm trying to track my progress over at my [digital garden](https://notes.jakegut.com/extended-cs). Check out my post on [Self Guided Operating Systems.](/posts/sg-os/)
 
 In my world I:
 
@@ -23,8 +23,8 @@ My cycle of special interests:
 - Graphics Programming
 - Operating Systems
 - Distributed Systems
-- Compilers and Interpreters
-- FOSS **_<-- we are here_**
+- Compilers and Interpreters **_<-- we are here_**
+- FOSS
 
 <!-- <div id="player"></div> -->
 <!-- <script src="https://unpkg.com/webamp"></script>
@@ -44,4 +44,4 @@ My cycle of special interests:
     },}).renderWhenReady(document.getElementById("player"));
 </script> -->
 
-_Last updated: September 22, 2022. Inspired by [nownownow.com](https://nownownow.com/about)_
+_Last updated: January 2, 2023. Inspired by [nownownow.com](https://nownownow.com/about)_
