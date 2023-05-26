@@ -31,11 +31,6 @@ const path = Astro.url.pathname.length == 1 ? "" : Astro.url.pathname;
     <nav class="display-none sm:flex">
       <ul>
         <li>
-          <a href="/posts" class={activeNav === "posts" ? "active" : ""}
-            >/posts</a
-          >
-        </li>
-        <li>
           <a href="/now" class={activeNav === "now" ? "active" : ""}>/now</a>
         </li>
         <li>

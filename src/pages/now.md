@@ -18,10 +18,10 @@ In my world I:
 
 My cycle of special interests:
 
-- Graphics Programming
+- Graphics Programming **_<-- we are here_**
 - Operating Systems
 - Distributed Systems
-- Compilers and Interpreters **_<-- we are here_**
+- Compilers and Interpreters
 - FOSS
 
-_Last updated: April 23, 2023. Inspired by [nownownow.com](https://nownownow.com/about)_
+_Last updated: May 23, 2023. Inspired by [nownownow.com](https://nownownow.com/about)_

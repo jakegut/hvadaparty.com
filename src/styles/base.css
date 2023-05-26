@@ -67,7 +67,7 @@
     prose-pre:!text-skin-base prose-a:!text-skin-base 
     prose-hr:!border-skin-line prose-li:marker:!text-skin-accent 
     prose-blockquote:!border-l-skin-accent prose-blockquote:border-opacity-50;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
   .prose a {
     @apply hover:!text-skin-accent;
@@ -123,4 +123,8 @@
   .focus-outline {
     @apply outline-offset-1 outline-skin-fill outline-2 focus-visible:outline-dashed focus-visible:no-underline;
   }
+}
+
+.astro-code {
+  line-height: 1.2;
 }
