@@ -17,12 +17,12 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-console.log(Astro.url.pathname);
+
 let imagePath =
   Astro.url.pathname.length === 1
     ? "og-image"
     : Astro.url.pathname.slice(1, -1).replaceAll("/", "--");
-console.log(imagePath);
+
 const socialImageURL = new URL(
   `/assets/ogs/${imagePath}.png`,
   Astro.url.origin

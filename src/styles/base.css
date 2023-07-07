@@ -128,3 +128,10 @@
 .astro-code {
   line-height: 1.2;
 }
+
+pre,
+code {
+  overflow-x: auto;
+  white-space-collapse: preserve;
+  text-wrap: nowrap;
+}
