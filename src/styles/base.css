@@ -30,7 +30,7 @@
   body {
     @apply font-serif bg-skin-fill text-skin-base min-h-screen flex flex-col 
     selection:bg-skin-accent selection:text-skin-inverted selection:bg-opacity-70;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   section,
   footer {
@@ -67,7 +67,7 @@
     prose-pre:!text-skin-base prose-a:!text-skin-base 
     prose-hr:!border-skin-line prose-li:marker:!text-skin-accent 
     prose-blockquote:!border-l-skin-accent prose-blockquote:border-opacity-50;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
   .prose a {
     @apply hover:!text-skin-accent;
