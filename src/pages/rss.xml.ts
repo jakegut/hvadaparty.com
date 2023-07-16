@@ -3,6 +3,9 @@ import rss from "@astrojs/rss";
 import type { Frontmatter } from "src/types";
 import type { MarkdownInstance } from "astro";
 import slugify from "@utils/slugify";
+import sanitizeHtml from "sanitize-html";
+import MarkdownIt from "markdown-it";
+const parser = new MarkdownIt();
 
 const postImportResult = import.meta.glob<MarkdownInstance<Frontmatter>>(
   "../contents/**/**/*.md",
@@ -17,10 +20,14 @@ export const get = () =>
     title: SITE.title,
     description: SITE.desc,
     site: SITE.website,
-    items: posts.map(({ frontmatter }) => ({
-      link: slugify(frontmatter),
-      title: frontmatter.title,
-      description: frontmatter.description,
-      pubDate: new Date(frontmatter.datetime),
-    })),
+    items: posts
+      .filter(({ frontmatter }) => !frontmatter.draft)
+      .map(post => ({
+        link: slugify(post.frontmatter),
+        title: post.frontmatter.title,
+        content: sanitizeHtml(parser.render(post.rawContent())),
+        description: post.frontmatter.description,
+        pubDate: new Date(post.frontmatter.datetime),
+      })),
+    // items: postImportResult,
   });
