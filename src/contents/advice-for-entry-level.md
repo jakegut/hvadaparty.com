@@ -2,7 +2,7 @@
 title: "Lizard Brain: Advice I Wish I had as a Junior Engineer"
 slug: adv-lb
 datetime: 2023-07-13T16:13:06.242Z
-draft: true
+draft: false
 tags:
   - advice
   - entry-level
@@ -36,4 +36,6 @@ In the end, I reluctantly signed the offer still knowing that I could deny a ful
 
 When I joined, I was placed on the infrastructure and integrations team. To be fair, I requested something along this line as I didn't want to do mostly front-end which is unavoidable work at a startup.
 
-I worked on plathera of things on this team: AWS, Terraform, quite a bit of Make, a lot of PostgreSQL, some Node.js, Angular, and too much of RxJS. After 10 months there, I was given the opportunity to work on a project to migrate our build system from Make to Bazel. ik
+I worked on plathera of things on this team: AWS, Terraform, quite a bit of Make, a lot of PostgreSQL, some Node.js, Angular, and too much of RxJS. After 10 months there, I was given the opportunity to work on a project to migrate our build system from Make to Bazel. 
+
+This seemed like an interesting opportunity, I would be learning a completely new, niche build system to migrate our monorepo. 
