@@ -4,7 +4,7 @@ import Hr from "./Hr.astro";
 import LinkButton from "./LinkButton.astro";
 
 export interface Props {
-  activeNav?: "posts" | "tags" | "about" | "search" | "now";
+  activeNav?: "posts" | "tags" | "about" | "search" | "now" | "contact";
 }
 
 const { activeNav } = Astro.props;
@@ -32,6 +32,9 @@ const path = Astro.url.pathname.length == 1 ? "" : Astro.url.pathname;
       <ul>
         <li>
           <a href="/now" class={activeNav === "now" ? "active" : ""}>/now</a>
+        </li>
+        <li>
+          <a href="/contact" class={activeNav === "contact" ? "active" : ""}>/contact</a>
         </li>
         <li>
           <a href="https://notes.jakegut.com" target="_blank">notes.</a>

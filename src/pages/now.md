@@ -18,9 +18,9 @@ In my world I:
 
 My cycle of special interests:
 
-- Graphics Programming **_<-- we are here_**
-- Operating Systems
-- Distributed Systems
+- Graphics Programming 
+- Operating Systems **_<-- we are here_**
+- Distributed Systems 
 - Compilers and Interpreters
 - FOSS
 
