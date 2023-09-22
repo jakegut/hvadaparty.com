@@ -2,7 +2,7 @@
 title: "Lizard Brain: Advice I Wish I had as a Junior Engineer"
 slug: adv-lb
 datetime: 2023-07-13T16:13:06.242Z
-draft: false
+draft: true
 tags:
   - advice
   - entry-level
