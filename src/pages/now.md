@@ -3,7 +3,7 @@ layout: ../layouts/AboutLayout.astro
 title: "Now"
 ---
 
-I'm working fully remote at [Clever](https://clever.com) as a Software Engineer on the Infrastructure team.
+I'm working fully remote at [Hexon Global](https://www.hexonlabs.com) as a Software Engineer on the Backend & Data team.
 
 I'm currently expanding my Computer Science major with more college-level courses, with the goal of working on lower-level systems as a career.
 
@@ -11,16 +11,16 @@ I'm trying to track my progress over at my [digital garden](https://notes.jakegu
 
 In my world I:
 
-- Got married
+- Got my Girl
 - Moved to Katy, TX
 - Hyperfixated on \<special interest\> (it's always changing, checkout the cycle below)
 - Learning the tin whistle
 
 My cycle of special interests:
 
-- Graphics Programming 
+- Graphics Programming
 - Operating Systems **_<-- we are here_**
-- Distributed Systems 
+- Distributed Systems
 - Compilers and Interpreters
 - FOSS
 

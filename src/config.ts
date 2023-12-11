@@ -2,9 +2,9 @@ import type { SocialsObject } from "./types";
 
 export const SITE = {
   website: "https://jakegut.com",
-  author: "Jake Gutierrez",
+  author: "Harish Vadaparty",
   desc: "A personal website",
-  title: "Jake Gutierrez",
+  title: "Harish Vadaparty",
   lightAndDarkMode: true,
   postPerPage: 5,
 };
