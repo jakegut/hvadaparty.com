@@ -2,7 +2,7 @@
 title: Checking if an External Server is Running in Node.js
 slug: ext-svr
 datetime: 2022-01-17T19:51:33.945Z
-draft: false
+draft: true
 tags:
   - nodejs
 ogImage: ""
