@@ -2,7 +2,7 @@
 title: Setting up automatic deployments on EC2 and Lambdas
 slug: setting-up-ci-cd-ec2
 datetime: 2023-12-25T16:13:06.242Z
-draft: true
+draft: false
 tags:
   - ci-cd
 ogImage: ""

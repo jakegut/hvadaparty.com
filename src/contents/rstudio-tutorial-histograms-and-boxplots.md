@@ -2,7 +2,7 @@
 title: 'RStudio Tutorial: Histograms and Boxplots'
 datetime: '2019-03-19T11:14:31-05:00'
 slug: 'r-hist-box'
-draft: false
+draft: true
 tags:
   - r-lang
 ogImage: ""

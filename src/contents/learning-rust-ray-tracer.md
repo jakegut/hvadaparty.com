@@ -2,7 +2,7 @@
 title: Learning Rust through a Ray Tracer
 slug: rs-rt
 datetime: 2023-07-07T16:13:06.242Z
-draft: false
+draft: true
 tags:
   - rust
   - raytracer
