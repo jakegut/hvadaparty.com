@@ -1,10 +1,11 @@
 ---
-title: Setting up automatic deployments on EC2 and Lambdas
+title: Setting up automatic deployments on EC2, Lambdas, EKS, ECS
 slug: setting-up-ci-cd-ec2
 datetime: 2023-12-25T16:13:06.242Z
 draft: false
 tags:
   - ci-cd
+  - aws
 ogImage: ""
 ---
 
@@ -13,6 +14,11 @@ We all host servers on EC2. Because its easier and good for debugging in DEV env
 So the problem we are discussing today is how to restart the server with latest changes of the code in EC2 once a GIT Branch is Updated.
 
 We also have few lambdas and serverless apps written by serverless wrapper (sls) for ingestions and functions, so we want them to be deployed once a commit is made or the watch folders gets updated
+
+Most of the Prod Code will be running under EKS (if it is containerized) else it will be running on ECS (Dockerized EC2 runtime or Fargate Runtime)
+
+
+So here we will be discussing all the approaches on solving all the CI-CD automations with github that uses these environments
 
 
 So there are multiple ways for doing this,
@@ -85,6 +91,8 @@ Before adding the Workflow file, we need to setup few secrets on Github Secrets,
    2. AWS_SECRET_ACCESS_KEY
    3. AWS_REGION
 
+Watch folder is added for 'aws/**' that means if any files changed under this will trigger the rebuild
+
 ./github/workflows/deploy-serverless-stack-dev.yml
 ```yaml
 name: Deploy to AWS
@@ -122,4 +130,187 @@ jobs:
         run: |
           cd aws
           sls deploy --stage dev
+```
+
+## EKS Auto Deployment
+So all we need to do is, just go to the Actions tab > click on "New Workflow" > "Setup new workflow by yourself" > Create "deploy-serverless-stack-dev.yml", thats all. a new file will be created on .github/workflows folder
+
+
+Before adding the Workflow file, we need to setup few secrets on Github Secrets, you need admin access for this (needs to be done on settings tab of repository)
+   1. AWS_ACCESS_KEY_ID
+   2. AWS_SECRET_ACCESS_KEY
+   3. AWS_REGION
+
+Watch folder is added for 'aws/**' that means if any files changed under this will trigger the rebuild
+
+./github/workflows/deploy-eks-prod.yml
+
+```yaml
+name: EKS Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Install kubectl
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y kubectl
+
+    - name: Configure kubectl
+      run: aws eks --region ${{ secrets.AWS_REGION }} update-kubeconfig --name websocket-server
+
+    - name: Apply Kubernetes manifests
+      run: kubectl apply -f kubernetes-manifests/
+
+    - name: Deploy to EKS
+      run: kubectl set image deployment/websocket-server your-container-name=${{ secrets.AWS_REGISTRY_URL }}/websocket-server:${{ github.sha }}
+```
+
+
+## ECS (EC2 Launch Type) Deployment
+
+```yaml
+name: ECS (EC2) Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Build and Push Docker Image
+      run: |
+        echo ${{ secrets.AWS_SECRET_ACCESS_KEY }} | docker login -u AWS --password-stdin https://${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+        docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/your-repo-name:${{ github.sha }} .
+        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/your-repo-name:${{ github.sha }}
+
+    - name: Update ECS Service
+      run: |
+        aws ecs update-service \
+          --cluster your-ecs-cluster \
+          --service your-ecs-service \
+          --region ${{ secrets.AWS_REGION }} \
+          --force-new-deployment
+```
+
+
+## EC2 Deployment (without existing process runner)
+
+```yaml
+name: EC2 Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Build and Push Docker Image
+      run: |
+        echo ${{ secrets.AWS_SECRET_ACCESS_KEY }} | docker login -u AWS --password-stdin https://${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+        docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/your-repo-name:${{ github.sha }} .
+        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/your-repo-name:${{ github.sha }}
+
+    - name: Deploy to EC2
+      run: |
+        aws ec2 run-instances \
+          --image-id ami-xxxxxxxxxxxxxxxxx \
+          --instance-type t2.micro \
+          --key-name your-key-pair \
+          --subnet-id your-subnet-id \
+          --security-group-ids your-security-group-id \
+          --region ${{ secrets.AWS_REGION }}
+
+```
+
+## ECS (Fargate) Deployment
+```yaml
+name: ECS (Fargate) Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Build and Push Docker Image
+      run: |
+        echo ${{ secrets.AWS_SECRET_ACCESS_KEY }} | docker login -u AWS --password-stdin https://${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+        docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/your-repo-name:${{ github.sha }} .
+        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/your-repo-name:${{ github.sha }}
+
+    - name: Create or Update ECS Task Definition
+      run: |
+        aws ecs register-task-definition \
+          --family your-task-family \
+          --container-definitions "$(cat path/to/your/container-definition.json)" \
+          --region ${{ secrets.AWS_REGION }}
+
+    - name: Update ECS Service
+      run: |
+        aws ecs update-service \
+          --cluster your-ecs-cluster \
+          --service your-ecs-service \
+          --region ${{ secrets.AWS_REGION }} \
+          --force-new-deployment
+
 ```
