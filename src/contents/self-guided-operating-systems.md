@@ -2,7 +2,7 @@
 title: Self Guided Operating Systems
 datetime: 2022-01-12T02:05:09.972Z
 slug: "sg-os"
-draft: false
+draft: true
 tags:
   - self-guided
   - os
